@@ -1,4 +1,5 @@
 <section id="contact" class="section" aria-label="Contact">
+  <span class="section-label">// contact</span>
   <div class="container">
     <h2 class="section-title fade-in">Get in Touch</h2>
     <div class="contact-content fade-in">
@@ -21,12 +22,11 @@
             <span class="contact-value">github.com/sopuvvula</span>
           </div>
         </a>
-        <!-- TODO: Add your LinkedIn profile URL -->
-        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <a href="https://linkedin.com/in/mohan-dasari" target="_blank" rel="noopener noreferrer" class="contact-link">
           <span class="contact-icon" aria-hidden="true">&#128101;</span>
           <div>
             <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">linkedin.com/in/your-profile</span>
+            <span class="contact-value">linkedin.com/in/mohan-dasari</span>
           </div>
         </a>
       </div>
@@ -35,12 +35,22 @@
 </section>
 
 <style>
+  .section-label {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: rgba(107, 138, 255, 0.3);
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
   .contact-content {
     max-width: 600px;
   }
 
   .contact-text {
-    color: #666;
+    color: #888;
     font-size: 1.05rem;
     margin-bottom: 2.5rem;
   }
@@ -56,16 +66,17 @@
     align-items: center;
     gap: 1rem;
     padding: 1.25rem;
-    background: #fff;
-    border: 1px solid #eee;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(107, 138, 255, 0.1);
     border-radius: 12px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     color: inherit;
   }
 
   .contact-link:hover {
-    border-color: #d0d5e8;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border-color: rgba(107, 138, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
     color: inherit;
   }
 
@@ -76,24 +87,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f0f2f8;
+    background: rgba(107, 138, 255, 0.08);
+    border: 1px solid rgba(107, 138, 255, 0.1);
     border-radius: 10px;
     flex-shrink: 0;
   }
 
   .contact-label {
     display: block;
-    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #999;
-    font-weight: 600;
+    color: #6b8aff;
+    font-weight: 500;
     margin-bottom: 0.15rem;
   }
 
   .contact-value {
     display: block;
-    color: #1a1a2e;
+    color: #e0e0e8;
     font-weight: 500;
     font-size: 0.95rem;
   }

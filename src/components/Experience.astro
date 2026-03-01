@@ -52,6 +52,7 @@ const experiences = [
 ---
 
 <section id="experience" class="section" aria-label="Experience">
+  <span class="section-label">// experience</span>
   <div class="container">
     <h2 class="section-title fade-in">Experience</h2>
     <div class="timeline fade-in">
@@ -80,6 +81,16 @@ const experiences = [
 </section>
 
 <style>
+  .section-label {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: rgba(107, 138, 255, 0.3);
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
   .timeline {
     position: relative;
     padding-left: 2rem;
@@ -91,8 +102,8 @@ const experiences = [
     left: 7px;
     top: 8px;
     bottom: 8px;
-    width: 2px;
-    background: #e5e7eb;
+    width: 1px;
+    background: rgba(107, 138, 255, 0.15);
   }
 
   .timeline-item {
@@ -111,16 +122,23 @@ const experiences = [
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #fff;
-    border: 2.5px solid #4a6cf7;
+    background: #0a0a14;
+    border: 2px solid #6b8aff;
     z-index: 1;
   }
 
   .timeline-content {
-    background: #fff;
-    border: 1px solid #eee;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(107, 138, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-content:hover {
+    border-color: rgba(107, 138, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
   }
 
   .timeline-header {
@@ -135,24 +153,25 @@ const experiences = [
   .timeline-role {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #e0e0e8;
   }
 
   .timeline-company {
-    color: #4a6cf7;
+    color: #6b8aff;
     font-weight: 500;
     font-size: 0.95rem;
   }
 
   .timeline-period {
-    color: #999;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: 400;
     white-space: nowrap;
   }
 
   .timeline-description {
-    color: #666;
+    color: #888;
     font-size: 0.95rem;
     margin-bottom: 1rem;
   }
@@ -164,12 +183,13 @@ const experiences = [
   }
 
   .tag {
-    background: #f0f2f8;
-    color: #555;
+    background: rgba(107, 138, 255, 0.08);
+    color: #b0b8d0;
     padding: 0.25rem 0.65rem;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
+    border: 1px solid rgba(107, 138, 255, 0.08);
   }
 
   @media (max-width: 480px) {

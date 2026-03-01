@@ -15,17 +15,23 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #1a1a2e;
-  background-color: #fafafa;
+  color: #e0e0e8;
+  background-color: #0a0a14;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Blueprint grid background */
+  background-image:
+    linear-gradient(rgba(74, 108, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 108, 247, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   font-weight: 600;
+  color: #f0f0f5;
 }
 
 h1 { font-size: 3rem; }
@@ -37,13 +43,18 @@ p {
 }
 
 a {
-  color: #4a6cf7;
+  color: #6b8aff;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #3451c7;
+  color: #93adff;
+}
+
+/* ===== Monospace accent ===== */
+code, .mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 }
 
 /* ===== Utility ===== */
@@ -56,6 +67,18 @@ a:hover {
 
 .section {
   padding: 5rem 0;
+  position: relative;
+}
+
+/* Section component label */
+.section::before {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: rgba(107, 138, 255, 0.3);
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
 }
 
 .section-title {
@@ -71,8 +94,21 @@ a:hover {
   left: 0;
   width: 40px;
   height: 3px;
-  background: #4a6cf7;
+  background: #6b8aff;
   border-radius: 2px;
+}
+
+/* ===== Glass card base ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(107, 138, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass:hover {
+  border-color: rgba(107, 138, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
 }
 
 /* ===== Animations ===== */
