@@ -19,7 +19,7 @@ const photos = [
     <h2 class="section-title fade-in">Life Outside of Work</h2>
     <div class="gallery-grid fade-in">
       {photos.map((photo) => (
-        <figure class="gallery-item">
+        <figure class="gallery-item photo-spotlight">
           <img
             src={`/images/${photo.file}`}
             alt={photo.caption}
@@ -55,8 +55,7 @@ const photos = [
 
   .gallery-item:hover {
     border-color: var(--border-hover);
-    box-shadow: 0 4px 30px var(--shadow);
-    transform: scale(1.05);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
   }
 
   .gallery-item img {
