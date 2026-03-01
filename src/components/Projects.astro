@@ -1,0 +1,154 @@
+---
+const projects = [
+  {
+    title: 'Firmware CI Platform Redesign',
+    description:
+      'Rebuilt Alarm.com\'s entire firmware CI infrastructure from ad-hoc shared builds to standardized, reproducible pipelines. Achieved 6× build time reduction and migrated to a 15-node bare-metal Kubernetes cluster.',
+    tags: ['Kubernetes', 'Bamboo', 'Java Specs', 'LUN Storage'],
+    github: '',
+    live: '',
+  },
+  {
+    title: 'RAG-Based Support Agent',
+    description:
+      'Built an internal AI-powered support agent using Python, FastAPI, and Azure OpenAI that integrates Confluence and Jira data. Currently piloting with 200+ engineers to reduce repetitive Tier-1 support inquiries.',
+    tags: ['Python', 'FastAPI', 'Azure OpenAI', 'RAG'],
+    github: '',
+    live: '',
+  },
+  {
+    title: 'CI Telemetry & Observability',
+    description:
+      'Designed automated telemetry pipelines powering Grafana and PowerBI dashboards across 500 daily builds. Surfaces failure rates, queue times, build trends, and workload distribution for engineering leadership.',
+    tags: ['Grafana', 'PowerBI', 'Python', 'Data Pipelines'],
+    github: '',
+    live: '',
+  },
+  {
+    title: 'AWS Automation Workflows',
+    description:
+      'Built AWS-based automation workflows for a federal agency using Lambda, DynamoDB, SES, and SNS to generate recurring analytics and system health reports.',
+    tags: ['AWS Lambda', 'DynamoDB', 'SES', 'SNS'],
+    github: '',
+    live: '',
+  },
+];
+---
+
+<section id="projects" class="section" aria-label="Projects">
+  <div class="container">
+    <h2 class="section-title fade-in">Projects</h2>
+    <div class="projects-grid fade-in">
+      {projects.map((project) => (
+        <article class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+            <div class="project-tags">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} source code`}>
+                Code
+              </a>
+            )}
+            {project.live && (
+              <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} live demo`}>
+                Live Demo
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .project-card:hover {
+    border-color: #d0d5e8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tag {
+    background: #f0f2f8;
+    color: #555;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    min-height: 1rem;
+  }
+
+  .project-links a {
+    color: #4a6cf7;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .project-links a:hover {
+    color: #3451c7;
+  }
+
+  .project-links:empty {
+    border-top: none;
+    padding-top: 0;
+    min-height: 0;
+  }
+
+  @media (max-width: 480px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
