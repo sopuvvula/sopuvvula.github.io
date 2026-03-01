@@ -46,6 +46,7 @@ const photos = [
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     background: var(--bg-card);
     border: 1px solid var(--border);
     backdrop-filter: blur(8px);
@@ -55,6 +56,7 @@ const photos = [
   .gallery-item:hover {
     border-color: var(--border-hover);
     box-shadow: 0 4px 30px var(--shadow);
+    transform: scale(1.05);
   }
 
   .gallery-item img {
