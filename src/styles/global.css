@@ -105,16 +105,30 @@ body:has(.photo-spotlight:hover)::after {
   opacity: 1;
 }
 
+/* Elevate the section containing the hovered photo above the overlay */
+.section:has(.photo-spotlight:hover) {
+  z-index: 45;
+}
+
 /* The hovered photo pops to foreground */
 .photo-spotlight {
-  transition: transform 0.35s ease, z-index 0s;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
+  position: relative;
 }
 
 .photo-spotlight:hover {
   transform: scale(1.6);
   z-index: 50;
-  position: relative;
+}
+
+/* Smaller scale for hero and about photos (they're already large) */
+.hero-photo.photo-spotlight:hover {
+  transform: scale(1.15);
+}
+
+.about-photo.photo-spotlight:hover {
+  transform: scale(1.2);
 }
 
 /* ===== Typography ===== */
@@ -197,7 +211,7 @@ code, .mono {
 
 .fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* ===== Responsive ===== */
