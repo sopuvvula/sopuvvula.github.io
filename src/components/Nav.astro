@@ -12,11 +12,20 @@ const navLinks = [
 <nav class="nav" aria-label="Main navigation">
   <div class="container nav-inner">
     <a href="/" class="nav-logo">&lt;MD /&gt;</a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+    <div class="nav-right">
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <span class="theme-label-skel">skeletonized</span>
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+        <span class="theme-label-van">vanilla</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
     <ul class="nav-links" role="list">
       {navLinks.map((link) => (
         <li><a href={link.href}>{link.label}</a></li>
@@ -32,9 +41,9 @@ const navLinks = [
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(10, 10, 20, 0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(107, 138, 255, 0.08);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-inner {
@@ -48,12 +57,76 @@ const navLinks = [
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 1.1rem;
     font-weight: 500;
-    color: #6b8aff;
+    color: var(--accent);
     letter-spacing: -0.5px;
   }
 
   .nav-logo:hover {
-    color: #93adff;
+    color: var(--accent-hover);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .theme-label-skel {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .theme-label-van {
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+  }
+
+  :root[data-theme="vanilla"] .theme-label-skel {
+    opacity: 0.4;
+  }
+
+  :root[data-theme="vanilla"] .theme-label-van {
+    opacity: 1;
+  }
+
+  .toggle-track {
+    width: 32px;
+    height: 18px;
+    background: var(--border);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.3s ease;
+    border: 1px solid var(--border-hover);
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  :root[data-theme="vanilla"] .toggle-thumb {
+    transform: translateX(14px);
   }
 
   .nav-links {
@@ -63,14 +136,14 @@ const navLinks = [
   }
 
   .nav-links a {
-    color: #888;
+    color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: 500;
     transition: color 0.2s ease;
   }
 
   .nav-links a:hover {
-    color: #e0e0e8;
+    color: var(--heading);
   }
 
   .nav-toggle {
@@ -86,7 +159,7 @@ const navLinks = [
   .bar {
     width: 22px;
     height: 2px;
-    background: #e0e0e8;
+    background: var(--text);
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
@@ -94,6 +167,11 @@ const navLinks = [
   @media (max-width: 768px) {
     .nav-toggle {
       display: flex;
+    }
+
+    .theme-label-skel,
+    .theme-label-van {
+      display: none;
     }
 
     .nav-links {
@@ -104,14 +182,14 @@ const navLinks = [
       flex-direction: column;
       align-items: center;
       gap: 0;
-      background: rgba(10, 10, 20, 0.95);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       padding: 1rem 0;
       transform: translateY(-100%);
       opacity: 0;
       pointer-events: none;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      border-bottom: 1px solid rgba(107, 138, 255, 0.08);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-links.open {
@@ -134,6 +212,24 @@ const navLinks = [
 </style>
 
 <script>
+  // Theme toggle
+  const themeToggle = document.querySelector('.theme-toggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+
+  themeToggle?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next = current === 'vanilla' ? 'skeletonized' : 'vanilla';
+    if (next === 'skeletonized') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', next);
+    }
+    localStorage.setItem('theme', next);
+  });
+
+  // Mobile nav toggle
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
 

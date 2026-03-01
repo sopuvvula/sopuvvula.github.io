@@ -35,8 +35,8 @@
           src="/images/image3.jpg"
           alt="Dressed up with Amina at my friend Will's wedding"
           class="profile-img"
-          width="200"
-          height="200"
+          width="300"
+          height="360"
           loading="lazy"
         />
       </div>
@@ -45,16 +45,6 @@
 </section>
 
 <style>
-  .section-label {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: rgba(107, 138, 255, 0.3);
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-  }
-
   .about-content {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -63,7 +53,7 @@
   }
 
   .about-text p {
-    color: #999;
+    color: var(--text-muted);
     margin-bottom: 1.25rem;
     font-size: 1.05rem;
   }
@@ -85,13 +75,13 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #6b8aff;
+    color: var(--accent);
     font-weight: 500;
   }
 
   .detail-value {
     font-size: 1rem;
-    color: #e0e0e8;
+    color: var(--text);
     font-weight: 500;
   }
 
@@ -100,12 +90,12 @@
   }
 
   .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 360px;
     border-radius: 16px;
     object-fit: cover;
     object-position: top;
-    border: 1px solid rgba(107, 138, 255, 0.15);
+    border: 1px solid var(--border);
   }
 
   @media (max-width: 768px) {
@@ -119,8 +109,8 @@
     }
 
     .profile-img {
-      width: 150px;
-      height: 150px;
+      width: 220px;
+      height: 270px;
     }
 
     .about-details {

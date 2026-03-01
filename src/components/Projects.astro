@@ -94,16 +94,6 @@ const projects = [
 </section>
 
 <style>
-  .section-label {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: rgba(107, 138, 255, 0.3);
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-  }
-
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -111,8 +101,8 @@ const projects = [
   }
 
   .project-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(107, 138, 255, 0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.75rem;
     display: flex;
@@ -124,7 +114,6 @@ const projects = [
     overflow: hidden;
   }
 
-  /* Subtle code watermark */
   .project-card::before {
     content: '{ }';
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -132,23 +121,23 @@ const projects = [
     top: 1rem;
     right: 1rem;
     font-size: 0.7rem;
-    color: rgba(107, 138, 255, 0.12);
+    color: var(--label-color);
   }
 
   .project-card:hover {
-    border-color: rgba(107, 138, 255, 0.25);
-    box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 30px var(--shadow);
   }
 
   .project-title {
     font-size: 1.15rem;
     font-weight: 600;
-    color: #e0e0e8;
+    color: var(--heading);
     margin-bottom: 0.75rem;
   }
 
   .project-description {
-    color: #888;
+    color: var(--text-muted);
     font-size: 0.95rem;
     margin-bottom: 1.25rem;
     line-height: 1.6;
@@ -162,32 +151,32 @@ const projects = [
   }
 
   .tag {
-    background: rgba(107, 138, 255, 0.08);
-    color: #b0b8d0;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 0.25rem 0.65rem;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(107, 138, 255, 0.08);
+    border: 1px solid var(--tag-border);
   }
 
   .project-links {
     display: flex;
     gap: 1.25rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(107, 138, 255, 0.08);
+    border-top: 1px solid var(--border);
     min-height: 1rem;
   }
 
   .project-links a {
-    color: #6b8aff;
+    color: var(--accent);
     font-size: 0.9rem;
     font-weight: 500;
     transition: color 0.2s ease;
   }
 
   .project-links a:hover {
-    color: #93adff;
+    color: var(--accent-hover);
   }
 
   .project-links:empty {

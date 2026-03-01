@@ -26,6 +26,11 @@ const { title, description } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
+    <script is:inline>
+      // Apply saved theme immediately to prevent flash
+      const t = localStorage.getItem('theme');
+      if (t === 'vanilla') document.documentElement.setAttribute('data-theme', 'vanilla');
+    </script>
   </head>
   <body>
     <Nav />
