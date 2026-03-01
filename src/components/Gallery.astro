@@ -8,6 +8,8 @@ const photos = [
   { file: 'image6.jpg', caption: 'At the Del Mar harbor with my friend Dorian' },
   { file: 'image7.jpg', caption: 'Boba tea with my good friends Snehesh, Thao Vy, and Pranim' },
   { file: 'image8.jpg', caption: 'Axe throwing with my childhood friends Ishaan, Kalp, and Rohan' },
+  { file: 'image9.jpg', caption: 'Exploring downtown Chicago' },
+  { file: 'image10.jpg', caption: 'Hiking with a view in San Diego' },
 ];
 ---
 
@@ -33,16 +35,6 @@ const photos = [
 </section>
 
 <style>
-  .section-label {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: rgba(107, 138, 255, 0.3);
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-  }
-
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -53,15 +45,15 @@ const photos = [
     margin: 0;
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(107, 138, 255, 0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     backdrop-filter: blur(8px);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .gallery-item:hover {
-    border-color: rgba(107, 138, 255, 0.25);
-    box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 30px var(--shadow);
   }
 
   .gallery-item img {
@@ -74,7 +66,7 @@ const photos = [
   figcaption {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
-    color: #888;
+    color: var(--text-muted);
     line-height: 1.4;
   }
 

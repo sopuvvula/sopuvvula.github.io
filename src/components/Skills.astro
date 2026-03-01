@@ -43,16 +43,6 @@ const skillCategories = [
 </section>
 
 <style>
-  .section-label {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: rgba(107, 138, 255, 0.3);
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-  }
-
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -60,7 +50,7 @@ const skillCategories = [
   }
 
   .category-title {
-    color: #e0e0e8;
+    color: var(--heading);
     margin-bottom: 1rem;
     font-weight: 600;
   }
@@ -73,19 +63,18 @@ const skillCategories = [
   }
 
   .skill-tag {
-    background: rgba(107, 138, 255, 0.08);
-    color: #b0b8d0;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 0.4rem 0.85rem;
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 500;
-    border: 1px solid rgba(107, 138, 255, 0.1);
+    border: 1px solid var(--tag-border);
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
   .skill-tag:hover {
-    background: rgba(107, 138, 255, 0.15);
-    border-color: rgba(107, 138, 255, 0.3);
-    color: #e0e0e8;
+    background: var(--border-hover);
+    color: var(--heading);
   }
 </style>

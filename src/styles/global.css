@@ -1,3 +1,49 @@
+/* ===== Theme: Skeletonized (default) ===== */
+:root {
+  --bg: #0a0a14;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --text: #e0e0e8;
+  --text-muted: #888;
+  --text-faint: #666;
+  --heading: #f0f0f5;
+  --accent: #6b8aff;
+  --accent-hover: #93adff;
+  --border: rgba(107, 138, 255, 0.1);
+  --border-hover: rgba(107, 138, 255, 0.25);
+  --tag-bg: rgba(107, 138, 255, 0.08);
+  --tag-border: rgba(107, 138, 255, 0.08);
+  --tag-text: #b0b8d0;
+  --grid-line: rgba(74, 108, 247, 0.04);
+  --label-color: rgba(107, 138, 255, 0.3);
+  --shadow: rgba(107, 138, 255, 0.06);
+  --nav-bg: rgba(10, 10, 20, 0.85);
+  --icon-bg: rgba(107, 138, 255, 0.08);
+  --footer-text: #555;
+}
+
+/* ===== Theme: Vanilla ===== */
+:root[data-theme="vanilla"] {
+  --bg: #fafafa;
+  --bg-card: #ffffff;
+  --text: #555;
+  --text-muted: #666;
+  --text-faint: #888;
+  --heading: #1a1a2e;
+  --accent: #4a6cf7;
+  --accent-hover: #3451c7;
+  --border: #eee;
+  --border-hover: #d0d5e8;
+  --tag-bg: #f0f2f8;
+  --tag-border: transparent;
+  --tag-text: #555;
+  --grid-line: transparent;
+  --label-color: transparent;
+  --shadow: rgba(0, 0, 0, 0.04);
+  --nav-bg: rgba(250, 250, 250, 0.9);
+  --icon-bg: #f0f2f8;
+  --footer-text: #888;
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,
@@ -15,23 +61,23 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #e0e0e8;
-  background-color: #0a0a14;
+  color: var(--text);
+  background-color: var(--bg);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Blueprint grid background */
   background-image:
-    linear-gradient(rgba(74, 108, 247, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 108, 247, 0.04) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 40px 40px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   font-weight: 600;
-  color: #f0f0f5;
+  color: var(--heading);
 }
 
 h1 { font-size: 3rem; }
@@ -43,13 +89,13 @@ p {
 }
 
 a {
-  color: #6b8aff;
+  color: var(--accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #93adff;
+  color: var(--accent-hover);
 }
 
 /* ===== Monospace accent ===== */
@@ -70,17 +116,6 @@ code, .mono {
   position: relative;
 }
 
-/* Section component label */
-.section::before {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  color: rgba(107, 138, 255, 0.3);
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-}
-
 .section-title {
   margin-bottom: 3rem;
   position: relative;
@@ -94,21 +129,19 @@ code, .mono {
   left: 0;
   width: 40px;
   height: 3px;
-  background: #6b8aff;
+  background: var(--accent);
   border-radius: 2px;
 }
 
-/* ===== Glass card base ===== */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(107, 138, 255, 0.1);
-  backdrop-filter: blur(8px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass:hover {
-  border-color: rgba(107, 138, 255, 0.25);
-  box-shadow: 0 4px 30px rgba(107, 138, 255, 0.06);
+/* ===== Section label ===== */
+.section-label {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--label-color);
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
 }
 
 /* ===== Animations ===== */
