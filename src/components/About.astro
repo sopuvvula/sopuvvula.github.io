@@ -86,8 +86,11 @@
 
   .about-photo {
     flex-shrink: 0;
-    border-radius: 16px;
-    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .about-photo:hover {
+    transform: scale(1.05);
   }
 
   .profile-img {
