@@ -1,0 +1,48 @@
+{
+  "profilePhoto": {
+    "note": "Which image should be your main profile photo in the About section? Put the filename here.",
+    "file": "image3.jpg"
+  },
+  "gallery": [
+    {
+      "file": "image1.jpg",
+      "alt": "FILL IN: e.g. With my mom, dad, and sister at the temple",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image2.jpg",
+      "alt": "FILL IN: e.g. Brunch date with Amina!",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image3.jpg",
+      "alt": "FILL IN: e.g. Dressed up with Amina at my friend Will's wedding",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image4.jpg",
+      "alt": "FILL IN: e.g. Dinner with Amina for her 24th birthday at a restaurant",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image5.jpg",
+      "alt": "FILL IN: e.g. With uncle & aunt at sister's wedding in India",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image6.jpg",
+      "alt": "FILL IN: e.g. At the Del Mar harbor with my friend Dorian",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image7.jpg",
+      "alt": "FILL IN: e.g. Boba tea with my good friends Snehesh, Thao Vy, and Pranim (left to right)",
+      "caption": "FILL IN"
+    },
+    {
+      "file": "image8.jpg",
+      "alt": "FILL IN: e.g. Axe throwing with my childhood friends Ishaan, Kalp, and Rohan (left to right)",
+      "caption": "FILL IN"
+    }
+  ]
+}
