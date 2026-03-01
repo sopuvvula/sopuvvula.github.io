@@ -1,0 +1,164 @@
+---
+const experiences = [
+  {
+    role: 'DevOps Engineer II',
+    company: 'Alarm.com',
+    period: 'Oct 2025 — Present',
+    description:
+      'Continuing to lead platform engineering initiatives for the firmware CI platform, driving infrastructure optimization and developer productivity improvements at scale.',
+    tags: ['Kubernetes', 'CI/CD', 'Platform Engineering'],
+  },
+  {
+    role: 'DevOps Engineer I',
+    company: 'Alarm.com',
+    period: 'Jun 2024 — Sep 2025',
+    description:
+      'Led end-to-end redesign of firmware CI platform supporting 500 builds/day across US, India, and Ukraine. Reduced build times 6× (300→50 min), migrated to a 15-node bare-metal Kubernetes cluster with 30% performance gain, and cut CI licensing costs 50%. Built RAG-based AI support agent piloting with 200+ engineers.',
+    tags: ['Kubernetes', 'Grafana', 'Python', 'FastAPI', 'Azure OpenAI', 'Bamboo'],
+  },
+  {
+    role: 'Software Engineer (Part-Time)',
+    company: 'Three Wire Systems',
+    period: 'Jul 2023 — Jun 2024',
+    description:
+      'Developed full-stack applications (Ruby on Rails, PostgreSQL) for the Federal Labor Relations Authority. Automated deployments with AWS Elastic Beanstalk and built AWS automation workflows using Lambda, DynamoDB, SES, and SNS.',
+    tags: ['Ruby on Rails', 'AWS', 'PostgreSQL', 'GitHub Actions'],
+  },
+  {
+    role: 'B.S. Computer Science',
+    company: 'University of Maryland, College Park',
+    period: 'Jan 2022 — May 2024',
+    description:
+      'Graduated with a 3.7 GPA. Studied algorithms, systems programming, and machine learning.',
+    tags: ['GPA: 3.7', 'Computer Science'],
+  },
+];
+---
+
+<section id="experience" class="section" aria-label="Experience">
+  <div class="container">
+    <h2 class="section-title fade-in">Experience</h2>
+    <div class="timeline fade-in">
+      {experiences.map((exp) => (
+        <div class="timeline-item">
+          <div class="timeline-marker" />
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">{exp.role}</h3>
+                <p class="timeline-company">{exp.company}</p>
+              </div>
+              <span class="timeline-period">{exp.period}</span>
+            </div>
+            <p class="timeline-description">{exp.description}</p>
+            <div class="timeline-tags">
+              {exp.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #e5e7eb;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid #4a6cf7;
+    z-index: 1;
+  }
+
+  .timeline-content {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-role {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .timeline-company {
+    color: #4a6cf7;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .timeline-period {
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .timeline-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    background: #f0f2f8;
+    color: #555;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .timeline-header {
+      flex-direction: column;
+    }
+  }
+</style>

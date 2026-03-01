@@ -1,0 +1,78 @@
+---
+const skillCategories = [
+  {
+    title: 'Languages',
+    skills: ['Python', 'Ruby', 'C/C++', 'Java', 'Bash', 'PowerShell', 'SQL'],
+  },
+  {
+    title: 'Infrastructure & DevOps',
+    skills: ['Kubernetes', 'Docker', 'Terraform', 'AWS', 'Linux', 'vSphere', 'Puppet', 'Ansible', 'Tanium'],
+  },
+  {
+    title: 'CI/CD & Platforms',
+    skills: ['GitHub Actions', 'Bamboo', 'Elastic Beanstalk', 'CI Telemetry'],
+  },
+  {
+    title: 'Observability & Tooling',
+    skills: ['Grafana', 'PowerBI', 'Jira', 'Confluence'],
+  },
+  {
+    title: 'AI & Development',
+    skills: ['FastAPI', 'Azure OpenAI', 'RAG Systems', 'Ruby on Rails', 'PostgreSQL'],
+  },
+];
+---
+
+<section id="skills" class="section" aria-label="Skills">
+  <div class="container">
+    <h2 class="section-title fade-in">Skills</h2>
+    <div class="skills-grid fade-in">
+      {skillCategories.map((category) => (
+        <div class="skill-category">
+          <h3 class="category-title">{category.title}</h3>
+          <ul class="skill-list" role="list">
+            {category.skills.map((skill) => (
+              <li class="skill-tag">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .category-title {
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    background: #f0f2f8;
+    color: #444;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .skill-tag:hover {
+    background: #e0e4f0;
+    color: #1a1a2e;
+  }
+</style>
