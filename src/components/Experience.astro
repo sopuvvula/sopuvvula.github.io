@@ -4,6 +4,7 @@ const experiences = [
     role: 'DevOps Engineer II',
     company: 'Alarm.com',
     period: 'Oct 2025 — Present',
+    current: true,
     description:
       'Same team, more ownership. Leading the CI platform roadmap, scaling our Kubernetes infrastructure, and expanding the internal AI tooling we started in my previous role.',
     tags: ['Kubernetes', 'CI/CD', 'Platform Engineering'],
@@ -57,7 +58,7 @@ const experiences = [
     <h2 class="section-title fade-in">Experience</h2>
     <div class="timeline fade-in">
       {experiences.map((exp) => (
-        <div class="timeline-item">
+        <div class={`timeline-item ${exp.current ? '' : 'completed'}`}>
           <div class="timeline-marker" />
           <div class="timeline-content">
             <div class="timeline-header">
@@ -115,6 +116,11 @@ const experiences = [
     background: var(--bg);
     border: 2px solid var(--accent);
     z-index: 1;
+  }
+
+  /* Filled circle for completed items */
+  .completed .timeline-marker {
+    background: var(--accent);
   }
 
   .timeline-content {
