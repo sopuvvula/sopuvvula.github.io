@@ -70,7 +70,26 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 40px 40px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Fluid theme transitions on everything */
+body,
+nav, footer,
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, figcaption,
+div, section, article, figure,
+button, img {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease,
+    box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+/* Images: hover zoom */
+img {
+  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
 }
 
 /* ===== Typography ===== */
