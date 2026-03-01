@@ -88,6 +88,35 @@ img {
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
+/* ===== Photo spotlight effect ===== */
+/* Dark overlay when any photo is hovered */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+body:has(.photo-spotlight:hover)::after {
+  opacity: 1;
+}
+
+/* The hovered photo pops to foreground */
+.photo-spotlight {
+  transition: transform 0.35s ease, z-index 0s;
+  cursor: pointer;
+}
+
+.photo-spotlight:hover {
+  transform: scale(1.6);
+  z-index: 50;
+  position: relative;
+}
+
 /* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
