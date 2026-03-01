@@ -1,0 +1,64 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>&copy; {currentYear} Mohan Dasari. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://github.com/sopuvvula" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        LinkedIn
+      </a>
+      <a href="mailto:your@email.com" aria-label="Email">
+        Email
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 2rem 0;
+    margin-top: 2rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-inner p {
+    color: #888;
+    font-size: 0.875rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    color: #888;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: #1a1a2e;
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

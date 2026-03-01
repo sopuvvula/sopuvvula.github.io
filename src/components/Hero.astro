@@ -1,0 +1,116 @@
+<section class="hero" aria-label="Introduction">
+  <div class="container hero-inner">
+    <p class="hero-greeting">Hi, I'm</p>
+    <h1 class="hero-name">Mohan Dasari</h1>
+    <p class="hero-title">Platform / Developer Productivity Engineer</p>
+    <p class="hero-tagline">
+      Specializing in high-throughput CI systems, infrastructure optimization,
+      and internal AI tooling. CKA certified.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+  }
+
+  .hero-inner {
+    padding: 4rem 1.5rem;
+  }
+
+  .hero-greeting {
+    font-size: 1.125rem;
+    color: #4a6cf7;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-name {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.125rem;
+    color: #888;
+    margin-bottom: 2.5rem;
+    max-width: 550px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #1a1a2e;
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #2d2d4a;
+    color: #fff;
+  }
+
+  .btn-secondary {
+    border: 1.5px solid #d0d0d0;
+    color: #1a1a2e;
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    border-color: #1a1a2e;
+  }
+
+  @media (max-width: 768px) {
+    .hero-name {
+      font-size: 2.75rem;
+    }
+
+    .hero-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name {
+      font-size: 2.25rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      text-align: center;
+    }
+  }
+</style>
