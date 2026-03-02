@@ -13,10 +13,10 @@ const photos = [
   { file: 'image2.jpg', caption: 'Brunch date with Amina!' },
   { file: 'image8.jpg', caption: 'Axe throwing with my childhood friends Ishaan, Kalp, and Rohan' },
   { file: 'image5.jpg', caption: "With uncle & aunt at sister's wedding in India" },
-  { file: 'image7.jpg', caption: 'Boba tea with my good friends Snehesh, Thao Vy, and Pranim', position: 'top' },
+  { file: 'image7.jpg', caption: 'Boba tea with my good friends Snehesh, Thao Vy, and Pranim' },
   { file: 'image3.jpg', caption: "Dressed up with Amina at my friend Will's wedding" },
   { file: 'image6.jpg', caption: 'At the Del Mar harbor with my friend Dorian' },
-  { file: 'image11.jpg', caption: "Destination Smokehouse with Veeresh, my sister, Amina, and Sidiya", position: 'top' },
+  { file: 'image11.jpg', caption: "Destination Smokehouse with Veeresh, my sister, Amina, and Sidiya" },
   { file: 'image10.jpg', caption: 'Overlooking from the San Diego hills' },
   { file: 'image4.jpg', caption: "Dinner with Amina for her 24th birthday" },
 ];
@@ -38,7 +38,6 @@ const photos = [
               height={450}
               quality={100}
               loading="lazy"
-              style={photo.position ? `object-position: ${photo.position}` : undefined}
             />
             <figcaption>{photo.caption}</figcaption>
           </figure>
@@ -85,9 +84,6 @@ const photos = [
 
   .gallery-item img {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    object-position: center;
     display: block;
   }
 
