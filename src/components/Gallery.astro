@@ -1,15 +1,16 @@
 ---
 const photos = [
   { file: 'image1.jpg', caption: 'With my mom, dad, and sister at the temple' },
+  { file: 'image9.jpg', caption: 'In Chicago!' },
   { file: 'image2.jpg', caption: 'Brunch date with Amina!' },
-  { file: 'image3.jpg', caption: "Dressed up with Amina at my friend Will's wedding" },
-  { file: 'image4.jpg', caption: "Dinner with Amina for her 24th birthday" },
-  { file: 'image5.jpg', caption: "With uncle & aunt at sister's wedding in India" },
-  { file: 'image6.jpg', caption: 'At the Del Mar harbor with my friend Dorian' },
-  { file: 'image7.jpg', caption: 'Boba tea with my good friends Snehesh, Thao Vy, and Pranim' },
   { file: 'image8.jpg', caption: 'Axe throwing with my childhood friends Ishaan, Kalp, and Rohan' },
-  { file: 'image9.jpg', caption: 'Exploring downtown Chicago' },
-  { file: 'image10.jpg', caption: 'Hiking with a view in San Diego' },
+  { file: 'image5.jpg', caption: "With uncle & aunt at sister's wedding in India" },
+  { file: 'image7.jpg', caption: 'Boba tea with my good friends Snehesh, Thao Vy, and Pranim' },
+  { file: 'image3.jpg', caption: "Dressed up with Amina at my friend Will's wedding" },
+  { file: 'image6.jpg', caption: 'At the Del Mar harbor with my friend Dorian' },
+  { file: 'image11.jpg', caption: "Destination Smokehouse with Veeresh, my sister, Amina, and Sidiya" },
+  { file: 'image10.jpg', caption: 'Overlooking from the San Diego hills' },
+  { file: 'image4.jpg', caption: "Dinner with Amina for her 24th birthday" },
 ];
 ---
 
@@ -19,7 +20,7 @@ const photos = [
     <h2 class="section-title fade-in">Life Outside of Work</h2>
     <div class="gallery-grid fade-in">
       {photos.map((photo) => (
-        <figure class="gallery-item photo-spotlight">
+        <figure class="gallery-item">
           <img
             src={`/images/${photo.file}`}
             alt={photo.caption}
@@ -46,17 +47,27 @@ const photos = [
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      border-color 0.3s ease, box-shadow 0.4s ease;
     background: var(--bg-card);
     border: 1px solid var(--border);
     backdrop-filter: blur(8px);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.4s ease, filter 0.4s ease,
+      border-color 0.3s ease, box-shadow 0.4s ease;
   }
 
+  /* When any item in the grid is hovered, dim the others */
+  .gallery-grid:hover .gallery-item:not(:hover) {
+    opacity: 0.3;
+    filter: blur(1px);
+  }
+
+  /* The hovered item scales up and glows */
   .gallery-item:hover {
+    transform: scale(1.08);
     border-color: var(--border-hover);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    position: relative;
   }
 
   .gallery-item img {
