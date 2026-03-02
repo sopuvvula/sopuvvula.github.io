@@ -79,13 +79,29 @@ const exps: Exp[] = [
 // Compute grid positions (reversed: newest at top, oldest at bottom)
 const items = exps.map(e => {
   const rawSr = mi(e.sy, e.sm) + 1;
-  const rawEr = (e.ey && e.em) ? mi(e.ey, e.em) + 1 : TOTAL + 1;
+  const rawEr = (e.ey && e.em) ? mi(e.ey, e.em) + 2 : TOTAL + 1;
   const sr = TOTAL + 2 - rawEr;
   const er = TOTAL + 2 - rawSr;
   const period = (e.ey && e.em)
     ? `${MONTHS[e.sm - 1]} ${e.sy} — ${MONTHS[e.em - 1]} ${e.ey}`
     : `${MONTHS[e.sm - 1]} ${e.sy} — Present`;
   return { ...e, sr, er, period };
+});
+
+// Clamp overlapping bars within the same lane
+const byLane = new Map<number, typeof items>();
+items.forEach(item => {
+  const lane = byLane.get(item.lane) ?? [];
+  lane.push(item);
+  byLane.set(item.lane, lane);
+});
+byLane.forEach(laneItems => {
+  laneItems.sort((a, b) => a.sr - b.sr);
+  for (let i = 0; i < laneItems.length - 1; i++) {
+    if (laneItems[i].er > laneItems[i + 1].sr) {
+      laneItems[i].er = laneItems[i + 1].sr;
+    }
+  }
 });
 
 // Year markers (reversed: newest at top)
@@ -211,7 +227,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   .swim {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    height: 780px;
+    height: 850px;
     gap: 0 0.75rem;
   }
 
@@ -240,7 +256,8 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
     backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    align-self: start;
+    min-height: 100%;
     position: relative;
     z-index: 1;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -270,6 +287,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   /* Current role pulse */
   .bar--current {
     border-color: rgba(107, 138, 255, 0.2);
+    z-index: 2;
   }
 
   .bar--current::after {
