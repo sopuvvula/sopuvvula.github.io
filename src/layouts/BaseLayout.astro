@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const siteUrl = 'https://sopuvvula.github.io';
+const ogImage = `${siteUrl}/og-image.jpg`;
 ---
 
 <!doctype html>
@@ -26,10 +28,33 @@ const { title, description } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Mohan Dasari" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a14" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
     <script is:inline>
       // Apply saved theme immediately to prevent flash
       const t = localStorage.getItem('theme');
-      if (t === 'vanilla') document.documentElement.setAttribute('data-theme', 'vanilla');
+      if (t === 'vanilla') {
+        document.documentElement.setAttribute('data-theme', 'vanilla');
+      } else if (!t && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'vanilla');
+      }
     </script>
   </head>
   <body>

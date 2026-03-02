@@ -146,6 +146,25 @@ const navLinks = [
     color: var(--heading);
   }
 
+  .nav-links a {
+    position: relative;
+  }
+
+  .nav-links a.active {
+    color: var(--heading);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -208,6 +227,10 @@ const navLinks = [
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
     }
+
+    .nav-links a.active::after {
+      display: none;
+    }
   }
 </style>
 
@@ -245,4 +268,23 @@ const navLinks = [
       toggle?.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Active section indicator
+  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = document.querySelectorAll('section[id]');
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach((a) => a.classList.remove('active'));
+          const match = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          match?.classList.add('active');
+        }
+      });
+    },
+    { rootMargin: '-20% 0px -75% 0px' }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
 </script>

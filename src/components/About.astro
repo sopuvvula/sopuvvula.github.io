@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import aboutImage from '../assets/images/image3.jpg';
+---
+
 <section id="about" class="section" aria-label="About me">
   <span class="section-label">// about</span>
   <div class="container">
@@ -30,12 +35,13 @@
         </div>
       </div>
       <div class="about-photo">
-        <img
-          src="/images/image3.jpg"
+        <Image
+          src={aboutImage}
           alt="Dressed up with Amina at my friend Will's wedding"
           class="profile-img"
-          width="300"
-          height="360"
+          width={360}
+          height={440}
+          quality={80}
           loading="lazy"
         />
       </div>
