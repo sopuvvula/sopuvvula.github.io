@@ -1,196 +1,368 @@
 ---
-const experiences = [
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const NOW_Y = 2026;
+const NOW_M = 3;
+const BASE_Y = 2021;
+const BASE_M = 6;
+
+function mi(y: number, m: number) {
+  return (y - BASE_Y) * 12 + (m - BASE_M);
+}
+
+const TOTAL = mi(NOW_Y, NOW_M); // 57
+
+interface Exp {
+  role: string;
+  company: string;
+  sy: number; sm: number;
+  ey: number | null; em: number | null;
+  desc: string;
+  tags: string[];
+  type: 'work' | 'education' | 'research';
+  lane: number;
+  current?: boolean;
+}
+
+// Newest first (for mobile DOM order)
+const exps: Exp[] = [
   {
     role: 'DevOps Engineer II',
     company: 'Alarm.com',
-    period: 'Oct 2025 — Present',
+    sy: 2025, sm: 10, ey: null, em: null,
     current: true,
-    description:
-      'Same team, more ownership. Leading the CI platform roadmap, scaling our Kubernetes infrastructure, and expanding the internal AI tooling we started in my previous role.',
+    desc: 'Leading the CI platform roadmap, scaling Kubernetes infrastructure, and expanding internal AI tooling.',
     tags: ['Kubernetes', 'CI/CD', 'Platform Engineering'],
+    type: 'work', lane: 1,
   },
   {
     role: 'DevOps Engineer I',
     company: 'Alarm.com',
-    period: 'Jun 2024 — Sep 2025',
-    description:
-      'Led end-to-end redesign of firmware CI platform supporting 500 builds/day across US, India, and Ukraine. Reduced build times 6× (300→50 min), migrated to a 15-node bare-metal Kubernetes cluster with 30% performance gain, and cut CI licensing costs 50%. Built RAG-based AI support agent piloting with 200+ engineers.',
-    tags: ['Kubernetes', 'Grafana', 'Python', 'FastAPI', 'Azure OpenAI', 'Bamboo'],
+    sy: 2024, sm: 6, ey: 2025, em: 9,
+    desc: 'Led end-to-end redesign of firmware CI platform supporting 500 builds/day. Reduced build times 6× (300→50 min), migrated to a 15-node bare-metal Kubernetes cluster, and cut CI licensing costs 50%. Built RAG-based AI support agent piloting with 200+ engineers.',
+    tags: ['Kubernetes', 'Grafana', 'Python', 'FastAPI'],
+    type: 'work', lane: 1,
   },
   {
     role: 'Software Engineer (Part-Time)',
     company: 'Three Wire Systems',
-    period: 'Jul 2023 — Jun 2024',
-    description:
-      'Developed full-stack applications (Ruby on Rails, PostgreSQL) for the Federal Labor Relations Authority. Automated deployments with AWS Elastic Beanstalk and built AWS automation workflows using Lambda, DynamoDB, SES, and SNS.',
-    tags: ['Ruby on Rails', 'AWS', 'PostgreSQL', 'GitHub Actions'],
-  },
-  {
-    role: 'Software Developer Intern',
-    company: 'iVue',
-    period: 'Jun 2021 — Jun 2023',
-    description:
-      'Built a web-based drone controller with a globe interface using C, Node.js, and Cesium.js. Developed a Django-based image processor, designed a collision avoidance system for drones, and led creation of company websites with Node.js and SQL.',
-    tags: ['C', 'Node.js', 'Django', 'Cesium.js', 'SQL'],
-  },
-  {
-    role: 'Research Assistant',
-    company: 'Perception and Robotics Group, UMD',
-    period: 'May 2022 — Dec 2022',
-    description:
-      'Automated dataset annotations via Mechanical Turk using Python, SQL, and JS. Applied computer vision techniques to identify incorrect posture in violinists, integrated with the Vicon 3D motion capture system.',
-    tags: ['Python', 'Computer Vision', 'SQL', 'Research'],
+    sy: 2023, sm: 7, ey: 2024, em: 6,
+    desc: 'Developed full-stack applications (Ruby on Rails, PostgreSQL) for the Federal Labor Relations Authority. Automated deployments with AWS Elastic Beanstalk.',
+    tags: ['Ruby on Rails', 'AWS', 'PostgreSQL'],
+    type: 'work', lane: 1,
   },
   {
     role: 'B.S. Computer Science',
     company: 'University of Maryland, College Park',
-    period: 'Jan 2022 — May 2024',
-    description:
-      'Graduated with a 3.7 GPA. Studied algorithms, systems programming, and machine learning.',
+    sy: 2022, sm: 1, ey: 2024, em: 5,
+    desc: 'Graduated with a 3.7 GPA. Studied algorithms, systems programming, and machine learning.',
     tags: ['GPA: 3.7', 'Computer Science'],
+    type: 'education', lane: 0,
+  },
+  {
+    role: 'Research Assistant',
+    company: 'Perception & Robotics Group, UMD',
+    sy: 2022, sm: 5, ey: 2022, em: 12,
+    desc: 'Automated dataset annotations via Mechanical Turk. Applied CV techniques to identify incorrect posture in violinists.',
+    tags: ['Python', 'Computer Vision', 'SQL'],
+    type: 'research', lane: 2,
+  },
+  {
+    role: 'Software Developer Intern',
+    company: 'iVue',
+    sy: 2021, sm: 6, ey: 2023, em: 6,
+    desc: 'Built a web-based drone controller with a globe interface using C, Node.js, and Cesium.js. Developed a Django-based image processor and collision avoidance system for drones.',
+    tags: ['C', 'Node.js', 'Django', 'Cesium.js'],
+    type: 'work', lane: 1,
   },
 ];
+
+// Compute grid positions
+const items = exps.map(e => {
+  const sr = mi(e.sy, e.sm) + 1;
+  const er = (e.ey && e.em) ? mi(e.ey, e.em) + 1 : TOTAL + 1;
+  const period = (e.ey && e.em)
+    ? `${MONTHS[e.sm - 1]} ${e.sy} — ${MONTHS[e.em - 1]} ${e.ey}`
+    : `${MONTHS[e.sm - 1]} ${e.sy} — Present`;
+  return { ...e, sr, er, period };
+});
+
+// Year markers
+const years: { year: number; row: number; pct: number }[] = [];
+for (let y = 2022; y <= NOW_Y; y++) {
+  const row = mi(y, 1) + 1;
+  years.push({ year: y, row, pct: ((row - 1) / TOTAL) * 100 });
+}
+
+// Overlap bands (rows with 2+ concurrent items)
+const activity = new Array(TOTAL + 2).fill(0);
+items.forEach(item => {
+  for (let r = item.sr; r < item.er; r++) activity[r]++;
+});
+const bands: { sr: number; er: number }[] = [];
+let bs = -1;
+for (let r = 1; r <= TOTAL; r++) {
+  if (activity[r] >= 2) {
+    if (bs === -1) bs = r;
+  } else {
+    if (bs !== -1) { bands.push({ sr: bs, er: r }); bs = -1; }
+  }
+}
+if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
 ---
 
 <section id="experience" class="section" aria-label="Experience">
   <span class="section-label">// experience</span>
   <div class="container">
     <h2 class="section-title fade-in">Experience</h2>
-    <div class="timeline fade-in">
-      {experiences.map((exp) => (
-        <div class={`timeline-item ${exp.current ? '' : 'completed'}`}>
-          <div class="timeline-marker" />
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3 class="timeline-role">{exp.role}</h3>
-                <p class="timeline-company">{exp.company}</p>
+
+    <!-- Desktop: Swim Lane Timeline -->
+    <div class="swim-container fade-in">
+      <div class="lane-heads">
+        <span class="lane-head lane-head--edu">Education</span>
+        <span class="lane-head lane-head--work">Career</span>
+        <span class="lane-head lane-head--res">Research</span>
+      </div>
+
+      <div class="swim-wrap">
+        {years.map(y => (
+          <span class="yr-label" style={`top: ${y.pct}%`}>{y.year}</span>
+        ))}
+
+        <div class="swim" style={`grid-template-rows: repeat(${TOTAL}, 1fr)`}>
+          {years.map(y => (
+            <div class="yr-line" style={`grid-row: ${y.row}`} aria-hidden="true" />
+          ))}
+
+          {bands.map(b => (
+            <div
+              class="overlap-band"
+              style={`grid-row: ${b.sr} / ${b.er}; grid-column: 1 / -1`}
+              aria-hidden="true"
+            />
+          ))}
+
+          {items.map(item => (
+            <article
+              class={`bar bar--${item.type}${item.current ? ' bar--current' : ''}`}
+              style={`grid-row: ${item.sr} / ${item.er}; grid-column: ${item.lane + 1}`}
+            >
+              <h3 class="bar-role">{item.role}</h3>
+              <p class="bar-co">{item.company}</p>
+              <span class="bar-period">{item.period}</span>
+              <p class="bar-desc">{item.desc}</p>
+              <div class="bar-tags">
+                {item.tags.map(t => <span class="tag">{t}</span>)}
               </div>
-              <span class="timeline-period">{exp.period}</span>
-            </div>
-            <p class="timeline-description">{exp.description}</p>
-            <div class="timeline-tags">
-              {exp.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-  }
-
-  .timeline-item:last-child {
-    padding-bottom: 0;
-  }
-
-  .timeline-marker {
-    position: absolute;
-    left: -2rem;
-    top: 6px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--accent);
-    z-index: 1;
-  }
-
-  /* Filled circle for completed items */
-  .completed .timeline-marker {
-    background: var(--accent);
-  }
-
-  .timeline-content {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    backdrop-filter: blur(8px);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .timeline-content:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 4px 30px var(--shadow);
-  }
-
-  .timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  /* ===== Desktop Swim Lane ===== */
+  .lane-heads {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 0 0.75rem;
+    margin-left: 3.5rem;
     margin-bottom: 0.75rem;
   }
 
-  .timeline-role {
-    font-size: 1.1rem;
+  .lane-head {
+    text-align: center;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-faint);
+  }
+
+  .lane-head--edu { color: #e8a817; border-color: rgba(232, 168, 23, 0.2); }
+  .lane-head--work { color: var(--accent); border-color: rgba(107, 138, 255, 0.2); }
+  .lane-head--res { color: #3dc98a; border-color: rgba(61, 201, 138, 0.2); }
+
+  .swim-wrap {
+    position: relative;
+    padding-left: 3.5rem;
+  }
+
+  .yr-label {
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .swim {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    height: 850px;
+    gap: 0 0.75rem;
+  }
+
+  .yr-line {
+    grid-column: 1 / -1;
+    border-top: 1px dashed var(--border);
+    align-self: start;
+    height: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .overlap-band {
+    background: rgba(107, 138, 255, 0.03);
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== Experience Bars ===== */
+  .bar {
+    border-radius: 12px;
+    padding: 0.65rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .bar:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 20px var(--shadow);
+    z-index: 3;
+  }
+
+  /* Left accent stripe */
+  .bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 2px;
+  }
+
+  .bar--work::before { background: var(--accent); }
+  .bar--education::before { background: #e8a817; }
+  .bar--research::before { background: #3dc98a; }
+
+  /* Current role pulse */
+  .bar--current {
+    border-color: rgba(107, 138, 255, 0.2);
+  }
+
+  .bar--current::after {
+    content: '';
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  .bar-role {
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--heading);
+    line-height: 1.3;
   }
 
-  .timeline-company {
-    color: var(--accent);
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-
-  .timeline-period {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    color: var(--text-faint);
+  .bar-co {
     font-size: 0.8rem;
-    font-weight: 400;
-    white-space: nowrap;
+    font-weight: 500;
+    margin-top: 0.1rem;
   }
 
-  .timeline-description {
+  .bar--work .bar-co { color: var(--accent); }
+  .bar--education .bar-co { color: #e8a817; }
+  .bar--research .bar-co { color: #3dc98a; }
+
+  .bar-period {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    margin-top: 0.2rem;
+  }
+
+  .bar-desc {
+    font-size: 0.8rem;
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    line-height: 1.5;
   }
 
-  .timeline-tags {
+  .bar-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.3rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
   }
 
   .tag {
     background: var(--tag-bg);
     color: var(--tag-text);
-    padding: 0.25rem 0.65rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 500;
     border: 1px solid var(--tag-border);
   }
 
-  @media (max-width: 480px) {
-    .timeline-header {
+  /* ===== Vanilla theme overrides ===== */
+  :global([data-theme="vanilla"]) .lane-head--edu { color: #b8860b; border-color: rgba(184, 134, 11, 0.2); }
+  :global([data-theme="vanilla"]) .lane-head--res { color: #1e8a5c; border-color: rgba(30, 138, 92, 0.2); }
+  :global([data-theme="vanilla"]) .bar--education::before { background: #b8860b; }
+  :global([data-theme="vanilla"]) .bar--research::before { background: #1e8a5c; }
+  :global([data-theme="vanilla"]) .bar--education .bar-co { color: #b8860b; }
+  :global([data-theme="vanilla"]) .bar--research .bar-co { color: #1e8a5c; }
+  :global([data-theme="vanilla"]) .overlap-band { background: rgba(74, 108, 247, 0.04); }
+
+  /* ===== Mobile: stack to column ===== */
+  @media (max-width: 768px) {
+    .lane-heads { display: none; }
+    .swim-wrap { padding-left: 0; }
+    .yr-label { display: none; }
+    .yr-line { display: none; }
+    .overlap-band { display: none; }
+
+    .swim {
+      display: flex;
       flex-direction: column;
+      height: auto;
+      gap: 1rem;
     }
+
+    .bar {
+      padding: 1.25rem;
+    }
+
+    .bar-role { font-size: 1rem; }
+    .bar-co { font-size: 0.9rem; }
+    .bar-period { font-size: 0.75rem; }
+    .bar-desc { font-size: 0.9rem; }
+    .tag { font-size: 0.75rem; }
   }
 </style>
