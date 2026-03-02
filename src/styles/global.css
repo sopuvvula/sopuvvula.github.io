@@ -88,47 +88,20 @@ img {
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-/* ===== Photo spotlight effect ===== */
-/* Dark overlay when any photo is hovered */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 40;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-body:has(.photo-spotlight:hover)::after {
-  opacity: 1;
-}
-
-/* Elevate the section containing the hovered photo above the overlay */
-.section:has(.photo-spotlight:hover) {
-  z-index: 45;
-}
-
-/* The hovered photo pops to foreground */
-.photo-spotlight {
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* ===== Photo hover effects ===== */
+/* Hero and About photos: gentle scale */
+.hero-photo,
+.about-photo {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
-  position: relative;
 }
 
-.photo-spotlight:hover {
-  transform: scale(1.6);
-  z-index: 50;
+.hero-photo:hover {
+  transform: scale(1.08);
 }
 
-/* Smaller scale for hero and about photos (they're already large) */
-.hero-photo.photo-spotlight:hover {
-  transform: scale(1.15);
-}
-
-.about-photo.photo-spotlight:hover {
-  transform: scale(1.2);
+.about-photo:hover {
+  transform: scale(1.12);
 }
 
 /* ===== Typography ===== */
