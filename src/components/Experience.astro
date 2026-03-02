@@ -76,20 +76,23 @@ const exps: Exp[] = [
   },
 ];
 
-// Compute grid positions
+// Compute grid positions (reversed: newest at top, oldest at bottom)
 const items = exps.map(e => {
-  const sr = mi(e.sy, e.sm) + 1;
-  const er = (e.ey && e.em) ? mi(e.ey, e.em) + 1 : TOTAL + 1;
+  const rawSr = mi(e.sy, e.sm) + 1;
+  const rawEr = (e.ey && e.em) ? mi(e.ey, e.em) + 1 : TOTAL + 1;
+  const sr = TOTAL + 2 - rawEr;
+  const er = TOTAL + 2 - rawSr;
   const period = (e.ey && e.em)
     ? `${MONTHS[e.sm - 1]} ${e.sy} — ${MONTHS[e.em - 1]} ${e.ey}`
     : `${MONTHS[e.sm - 1]} ${e.sy} — Present`;
   return { ...e, sr, er, period };
 });
 
-// Year markers
+// Year markers (reversed: newest at top)
 const years: { year: number; row: number; pct: number }[] = [];
-for (let y = 2022; y <= NOW_Y; y++) {
-  const row = mi(y, 1) + 1;
+for (let y = NOW_Y; y >= 2022; y--) {
+  const rawRow = mi(y, 1) + 1;
+  const row = TOTAL + 2 - rawRow;
   years.push({ year: y, row, pct: ((row - 1) / TOTAL) * 100 });
 }
 
@@ -204,7 +207,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   .swim {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    height: 850px;
+    height: 1050px;
     gap: 0 0.75rem;
   }
 
