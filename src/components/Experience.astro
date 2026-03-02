@@ -116,7 +116,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
 <section id="experience" class="section" aria-label="Experience">
   <span class="section-label">// experience</span>
   <div class="container">
-    <h2 class="section-title fade-in">Experience</h2>
+    <h2 class="section-title exp-title fade-in">Experience</h2>
 
     <!-- Desktop: Swim Lane Timeline -->
     <div class="swim-container fade-in">
@@ -166,12 +166,16 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
 
 <style>
   /* ===== Desktop Swim Lane ===== */
+  .exp-title {
+    margin-bottom: 2rem;
+  }
+
   .lane-heads {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     gap: 0 0.75rem;
     margin-left: 3.5rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .lane-head {
@@ -207,7 +211,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   .swim {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    height: 1050px;
+    height: 780px;
     gap: 0 0.75rem;
   }
 
@@ -230,7 +234,7 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   /* ===== Experience Bars ===== */
   .bar {
     border-radius: 12px;
-    padding: 0.65rem 0.75rem;
+    padding: 0.5rem 0.7rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
     backdrop-filter: blur(8px);
@@ -286,14 +290,14 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   }
 
   .bar-role {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--heading);
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   .bar-co {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     margin-top: 0.1rem;
   }
@@ -310,26 +314,26 @@ if (bs !== -1) bands.push({ sr: bs, er: TOTAL + 1 });
   }
 
   .bar-desc {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
-    margin-top: 0.5rem;
-    line-height: 1.5;
+    margin-top: 0.35rem;
+    line-height: 1.45;
   }
 
   .bar-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
+    gap: 0.25rem;
     margin-top: auto;
-    padding-top: 0.5rem;
+    padding-top: 0.35rem;
   }
 
   .tag {
     background: var(--tag-bg);
     color: var(--tag-text);
-    padding: 0.2rem 0.5rem;
+    padding: 0.15rem 0.4rem;
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
     border: 1px solid var(--tag-border);
   }
