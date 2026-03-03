@@ -200,19 +200,19 @@ import heroImage from '../assets/images/image9.jpg';
 </style>
 
 <script>
-  const hero = document.querySelector('.hero') as HTMLElement;
-  const img = hero?.querySelector('.hero-photo img') as HTMLElement;
+  const photo = document.querySelector('.hero-photo') as HTMLElement;
+  const img = photo?.querySelector('img') as HTMLElement;
 
-  if (hero && img) {
-    hero.addEventListener('mousemove', (e) => {
-      const { left, top, width, height } = hero.getBoundingClientRect();
-      const x = ((e.clientX - left) / width - 0.5) * -15;
-      const y = ((e.clientY - top) / height - 0.5) * -15;
-      img.style.transform = `translate(${x}px, ${y}px)`;
+  if (photo && img) {
+    photo.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = photo.getBoundingClientRect();
+      const x = ((e.clientX - left) / width - 0.5) * -30;
+      const y = ((e.clientY - top) / height - 0.5) * -30;
+      img.style.transform = `translate(${x}px, ${y}px) scale(1.03)`;
     });
 
-    hero.addEventListener('mouseleave', () => {
-      img.style.transform = 'translate(0, 0)';
+    photo.addEventListener('mouseleave', () => {
+      img.style.transform = 'translate(0, 0) scale(1)';
     });
   }
 </script>
