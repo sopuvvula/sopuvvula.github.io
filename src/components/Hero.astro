@@ -4,65 +4,81 @@ import heroImage from '../assets/images/image9.jpg';
 ---
 
 <section class="hero" aria-label="Introduction">
+  <div class="hero-bg">
+    <Image
+      src={heroImage}
+      alt="Mohan in front of the Chicago skyline"
+      width={1920}
+      height={1080}
+      quality={90}
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+  </div>
   <div class="container hero-inner">
-    <div class="hero-text">
-      <p class="hero-greeting">// hello, world</p>
-      <h1 class="hero-name">Mohan Dasari</h1>
-      <p class="hero-title">Platform / Developer Productivity Engineer</p>
-      <p class="hero-tagline">
-        Specializing in high-throughput CI systems, infrastructure optimization,
-        and internal AI tooling. CKA certified.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
-        <a href="/Mohan_Dasari_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <Image
-        src={heroImage}
-        alt="Mohan in front of the Chicago skyline"
-        width={800}
-        height={1040}
-        quality={100}
-        loading="eager"
-      />
+    <p class="hero-greeting">// hello, world</p>
+    <h1 class="hero-name">Mohan Dasari</h1>
+    <p class="hero-title">Platform / Developer Productivity Engineer</p>
+    <p class="hero-tagline">
+      Specializing in high-throughput CI systems, infrastructure optimization,
+      and internal AI tooling. CKA certified.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      <a href="/Mohan_Dasari_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
     </div>
   </div>
 </section>
 
 <style>
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   .hero {
+    position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    padding-top: 64px;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      var(--bg) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 1;
     padding: 4rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-  }
-
-  .hero-text {
-    flex: 1;
-  }
-
-  .hero-photo {
-    flex-shrink: 0;
-  }
-
-  .hero-photo img {
-    width: 400px;
-    height: 520px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 20px;
-    border: 1px solid var(--border);
   }
 
   .hero-greeting {
@@ -71,34 +87,44 @@ import heroImage from '../assets/images/image9.jpg';
     color: var(--accent);
     font-weight: 400;
     margin-bottom: 0.75rem;
+    opacity: 0;
+    animation: hero-fade-in 0.6s ease-out 0.2s forwards;
   }
 
   .hero-name {
     font-size: 4rem;
     font-weight: 700;
     letter-spacing: -1.5px;
-    color: var(--heading);
+    color: #f0f0f5;
     margin-bottom: 0.25rem;
+    opacity: 0;
+    animation: hero-fade-in 0.6s ease-out 0.4s forwards;
   }
 
   .hero-title {
     font-size: 1.5rem;
-    color: var(--text-muted);
+    color: #ccc;
     font-weight: 400;
     margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: hero-fade-in 0.6s ease-out 0.6s forwards;
   }
 
   .hero-tagline {
     font-size: 1.125rem;
-    color: var(--text-faint);
+    color: #aaa;
     margin-bottom: 2.5rem;
     max-width: 550px;
+    opacity: 0;
+    animation: hero-fade-in 0.6s ease-out 0.8s forwards;
   }
 
   .hero-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    opacity: 0;
+    animation: hero-fade-in 0.6s ease-out 1.0s forwards;
   }
 
   .btn {
@@ -121,27 +147,17 @@ import heroImage from '../assets/images/image9.jpg';
   }
 
   .btn-secondary {
-    border: 1.5px solid var(--border);
-    color: var(--text);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: #f0f0f5;
     background: transparent;
   }
 
   .btn-secondary:hover {
-    border-color: var(--border-hover);
-    color: var(--heading);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
   }
 
   @media (max-width: 768px) {
-    .hero-inner {
-      flex-direction: column-reverse;
-      text-align: center;
-    }
-
-    .hero-photo img {
-      width: 300px;
-      height: 390px;
-    }
-
     .hero-name {
       font-size: 2.75rem;
     }
@@ -149,20 +165,11 @@ import heroImage from '../assets/images/image9.jpg';
     .hero-title {
       font-size: 1.25rem;
     }
-
-    .hero-actions {
-      justify-content: center;
-    }
   }
 
   @media (max-width: 480px) {
     .hero-name {
       font-size: 2.25rem;
-    }
-
-    .hero-photo img {
-      width: 260px;
-      height: 340px;
     }
 
     .hero-actions {

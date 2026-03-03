@@ -58,6 +58,7 @@ const ogImage = `${siteUrl}/og-image.jpg`;
     </script>
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <Nav />
     <main>
       <slot />
@@ -78,6 +79,17 @@ const ogImage = `${siteUrl}/og-image.jpg`;
       document.querySelectorAll('.fade-in').forEach((el) => {
         observer.observe(el);
       });
+
+      const progressBar = document.querySelector('.scroll-progress') as HTMLElement;
+      if (progressBar) {
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
+          const progress = (scrollY / (docHeight - winHeight)) * 100;
+          progressBar.style.width = `${progress}%`;
+        }, { passive: true });
+      }
     </script>
   </body>
 </html>
