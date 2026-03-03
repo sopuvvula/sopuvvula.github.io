@@ -16,17 +16,19 @@ import heroImage from '../assets/images/image9.jpg';
     <div class="hero-overlay"></div>
   </div>
   <div class="container hero-inner">
-    <p class="hero-greeting">// hello, world</p>
-    <h1 class="hero-name">Mohan Dasari</h1>
-    <p class="hero-title">Platform / Developer Productivity Engineer</p>
-    <p class="hero-tagline">
-      Specializing in high-throughput CI systems, infrastructure optimization,
-      and internal AI tooling. CKA certified.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-secondary">Contact Me</a>
-      <a href="/Mohan_Dasari_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+    <div class="hero-text">
+      <p class="hero-greeting">// hello, world</p>
+      <h1 class="hero-name">Mohan Dasari</h1>
+      <p class="hero-title">Platform / Developer Productivity Engineer</p>
+      <p class="hero-tagline">
+        Specializing in high-throughput CI systems, infrastructure optimization,
+        and internal AI tooling. CKA certified.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        <a href="/Mohan_Dasari_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+      </div>
     </div>
   </div>
 </section>
@@ -79,6 +81,10 @@ import heroImage from '../assets/images/image9.jpg';
     position: relative;
     z-index: 1;
     padding: 4rem 1.5rem;
+  }
+
+  .hero-text {
+    max-width: 50%;
   }
 
   .hero-greeting {
@@ -158,6 +164,10 @@ import heroImage from '../assets/images/image9.jpg';
   }
 
   @media (max-width: 768px) {
+    .hero-text {
+      max-width: 65%;
+    }
+
     .hero-name {
       font-size: 2.75rem;
     }
@@ -168,6 +178,10 @@ import heroImage from '../assets/images/image9.jpg';
   }
 
   @media (max-width: 480px) {
+    .hero-text {
+      max-width: 75%;
+    }
+
     .hero-name {
       font-size: 2.25rem;
     }
