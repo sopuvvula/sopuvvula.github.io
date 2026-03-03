@@ -71,10 +71,13 @@ import heroImage from '../assets/images/image9.jpg';
   }
 
   .hero-photo img {
-    width: 100%;
-    height: 100%;
+    width: 110%;
+    height: 110%;
     object-fit: cover;
     object-position: center 30%;
+    margin: -5%;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
   }
 
   .hero-greeting {
@@ -195,3 +198,21 @@ import heroImage from '../assets/images/image9.jpg';
     }
   }
 </style>
+
+<script>
+  const hero = document.querySelector('.hero') as HTMLElement;
+  const img = hero?.querySelector('.hero-photo img') as HTMLElement;
+
+  if (hero && img) {
+    hero.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = hero.getBoundingClientRect();
+      const x = ((e.clientX - left) / width - 0.5) * -15;
+      const y = ((e.clientY - top) / height - 0.5) * -15;
+      img.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      img.style.transform = 'translate(0, 0)';
+    });
+  }
+</script>
