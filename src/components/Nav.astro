@@ -14,7 +14,7 @@ const navLinks = [
     <a href="/" class="nav-logo">&lt;MD /&gt;</a>
     <div class="nav-right">
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
-        <span class="theme-label-skel">skeletonized</span>
+        <span class="theme-label-skel">obsidian</span>
         <span class="toggle-track">
           <span class="toggle-thumb"></span>
         </span>
@@ -243,8 +243,8 @@ const navLinks = [
 
   themeToggle?.addEventListener('click', () => {
     const current = root.getAttribute('data-theme');
-    const next = current === 'vanilla' ? 'skeletonized' : 'vanilla';
-    if (next === 'skeletonized') {
+    const next = current === 'vanilla' ? 'obsidian' : 'vanilla';
+    if (next === 'obsidian') {
       root.removeAttribute('data-theme');
     } else {
       root.setAttribute('data-theme', next);
