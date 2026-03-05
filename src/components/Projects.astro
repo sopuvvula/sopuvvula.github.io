@@ -1,6 +1,15 @@
 ---
 const projects = [
   {
+    title: 'SiteCraft',
+    description:
+      'Upload your resume, pick a template, and get a polished personal website you fully own. Generates downloadable HTML with step-by-step GitHub Pages deploy instructions — free forever, zero vendor lock-in.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    github: '',
+    live: 'https://sitecraft.app',
+    logo: '/images/sitecraft-logo.png',
+  },
+  {
     title: 'Firmware CI Platform Redesign',
     description:
       'Rebuilt Alarm.com\'s entire firmware CI infrastructure, replacing legacy shared builds with standardized, reproducible pipelines. Achieved 6× build time reduction and migrated to a 15-node bare-metal Kubernetes cluster.',
@@ -56,14 +65,6 @@ const projects = [
     github: '',
     live: '',
   },
-  {
-    title: 'SiteCraft',
-    description:
-      'Upload your resume, pick a template, and get a polished personal website you fully own. Generates downloadable HTML with step-by-step GitHub Pages deploy instructions — free forever, zero vendor lock-in.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    github: '',
-    live: 'https://sitecraft.app',
-  },
 ];
 ---
 
@@ -75,7 +76,16 @@ const projects = [
       {projects.map((project) => (
         <article class="project-card">
           <div class="project-body">
-            <h3 class="project-title">{project.title}</h3>
+            <h3 class="project-title">
+              {project.logo ? (
+                <span class="branded-title">
+                  <img src={project.logo} alt="" class="project-logo" />
+                  <span>ite<span class="accent-text">Craft</span></span>
+                </span>
+              ) : (
+                project.title
+              )}
+            </h3>
             <p class="project-description">{project.description}</p>
             <div class="project-tags">
               {project.tags.map((tag) => (
@@ -142,6 +152,24 @@ const projects = [
     font-weight: 600;
     color: var(--heading);
     margin-bottom: 0.75rem;
+  }
+
+  .branded-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .project-logo {
+    height: 1.6em;
+    width: auto;
+    margin-right: -0.15em;
+  }
+
+  .accent-text {
+    color: #2563eb;
   }
 
   .project-description {
