@@ -78,10 +78,10 @@ const projects = [
           <div class="project-body">
             <h3 class="project-title">
               {project.logo ? (
-                <span class="branded-title">
+                <a href={project.live} target="_blank" rel="noopener noreferrer" class="branded-title">
                   <img src={project.logo} alt="" class="project-logo" />
                   <span>ite<span class="accent-text">Craft</span></span>
-                </span>
+                </a>
               ) : (
                 project.title
               )}
@@ -160,6 +160,12 @@ const projects = [
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.03em;
+    color: var(--heading);
+  }
+
+  .branded-title:hover {
+    color: var(--heading);
+    opacity: 0.8;
   }
 
   .project-logo {
