@@ -3,16 +3,24 @@ const projects = [
   {
     title: 'Firmware CI Platform Redesign',
     description:
-      'Rebuilt Alarm.com\'s entire firmware CI infrastructure, replacing legacy shared builds with standardized, reproducible pipelines. Achieved 6× build time reduction and migrated to a 15-node bare-metal Kubernetes cluster.',
-    tags: ['Kubernetes', 'Bamboo', 'Java Specs', 'LUN Storage'],
+      'Rebuilt Alarm.com\'s firmware CI from the ground up: migrated from Bamboo to GitHub Actions, cut average build time 6× (300 to 50 min) with LUN-backed storage and dedicated cache layers, and moved execution onto an on-prem bare-metal Kubernetes cluster.',
+    tags: ['GitHub Actions', 'Kubernetes', 'Buildroot', 'CI/CD'],
     github: '',
     live: '',
   },
   {
-    title: 'RAG-Based Support Agent',
+    title: 'Source Control Migration',
     description:
-      'Built an internal AI-powered support agent using Python, FastAPI, and Azure OpenAI that integrates Confluence and Jira data. Currently piloting with 200+ engineers to reduce repetitive Tier-1 support inquiries.',
-    tags: ['Python', 'FastAPI', 'Azure OpenAI', 'RAG'],
+      'Led the device engineering team\'s source-control migration from Bitbucket to GitHub across 100+ repositories with cross-host submodules. Set up tiered GitHub App tokens and carried hundreds of engineers across three continents through the cutover.',
+    tags: ['GitHub Enterprise', 'Git', 'Migration', 'Secret Server'],
+    github: '',
+    live: '',
+  },
+  {
+    title: 'AI Skills Library',
+    description:
+      'Built and maintain a shared library of reusable AI skills adopted across Cloud and Device Engineering. Succeeded an earlier RAG support agent after finding composable skills the stronger abstraction for engineer-facing AI tooling.',
+    tags: ['AI Tooling', 'Developer Experience', 'LLM Workflows'],
     github: '',
     live: '',
   },
